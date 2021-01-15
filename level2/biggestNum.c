@@ -29,7 +29,7 @@ void convert_char(char* tmp, int n, int len){ //문자열 변환 convert_char
 char* solution(int numbers[], size_t numbers_len) {
 	char* answer, **tmp;
 	int i, j, total_len = 0, len;
-	포인터 배열 할당
+	//포인터 배열 할당
 		tmp = (char**)malloc(numbers_len * sizeof(char*));
 
 	//1. 각 원소 포인터 배열에 문자열로 저장
