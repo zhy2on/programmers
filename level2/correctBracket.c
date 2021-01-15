@@ -3,7 +3,7 @@
 #include <stdlib.h>
 bool solution(const char* s) {
 	int top = -1;
-	char* stack = (char*)malloc((strlen(s)+1) * sizeof(char));
+	char* stack = (char*)malloc(strlen(s) * sizeof(char));
 
 	while(*s){
 		if(*s == '(') stack[++top] = *s;
