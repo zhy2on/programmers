@@ -48,7 +48,8 @@ char* solution(int numbers[], size_t numbers_len) {
 		answer = (char*)malloc(2 * sizeof(char));
 		strcpy(answer, "0");
 	}
-	else{	                                                                                                                answer = (char*)malloc((total_len + 1) * sizeof(char));
+	else{
+		answer = (char*)malloc((total_len + 1) * sizeof(char));
 		strcpy(answer, tmp[0]);
 		for(i = 1; i < numbers_len; i++) strcat(answer, tmp[i]);
 	}    
