@@ -47,5 +47,6 @@ int solution(int a[], size_t a_len) {
 		if(executeCombi(a, a_len, r)) return r;
 		r -= 2;
 	}
+
 	return 0;
 }
