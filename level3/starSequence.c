@@ -1,3 +1,4 @@
+//스타수열ver1. 오류나는 코드.... 조합해서 스타수열인지 확인
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
