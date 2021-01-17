@@ -1,5 +1,4 @@
-//스타수열 ver4 ->테스트 케이스 오류 : 4, 9, 11, 12, 13, 14, 15
-반례1: [1, 1, 0]
+//스타수열 최종ver : ver4 반례 [1,1,0] 수정
 #include <stdio.h>
 #include <stdlib.h>
 typedef struct star {
@@ -45,7 +44,7 @@ void updateLen(Star* star, int curIdx) {
 	}
 
 	else { //if(star->flag == 1) //이전 인덱스가 오른쪽과 묶인 경우
-		if(curIdx == bfIdx + 1) { star->flag = -1; star->len -= 2; } //현재 인덱스가 이전 인덱스와 묶여있었던 경우
+		if(curIdx == bfIdx + 1) { star->flag = 1; } //현재 인덱스가 이전 인덱스와 묶여있었던 경우
 		else if(curIdx - (bfIdx + 1) > 1) { star->flag = -1; star->len += 2; } //왼쪽에 자리가 있는 경우
 		else { star->flag = 1; star->len += 2; } //왼쪽에 자리가 없는 경우
 	}
@@ -76,7 +75,6 @@ int solution(int a[], int a_len) {
 	//2. a[]돌면서 star[]채우기 이 때 각 리스트의 최대 스타수열 길이 len을 저장
 	for(i = 0; i < a_len - 1; i++){
 		updateLen(star+a[i], i);
-		printf("i, len, flag, bfIdx: %d %d %d %d\n", i, star[a[i]].len, star[a[i]].flag, star[a[i]].bfIdx);
 	}
 	lastUpdate(star+a[i], i);
 
