@@ -1,4 +1,5 @@
 //스타수열 ver4 ->테스트 케이스 오류 : 4, 9, 11, 12, 13, 14, 15
+반례1: [1, 1, 0]
 #include <stdio.h>
 #include <stdlib.h>
 typedef struct star {
@@ -31,7 +32,7 @@ void initStar(Star* star, int a_len) {
 void updateLen(Star* star, int curIdx) {
 	int bfIdx = star->bfIdx;
 
-	if(star->flag == 0) { //처음 업데이트 되는 경우일 때 -->len은 중간에 0이 되는 경우가 있기 때문에 flag로 비교
+	if(star->flag == 0) { //처음 업데이트 되는 경우일 때
 		if(curIdx > 0) { star->flag = -1; star->len += 2; }
 		else { star->flag = 1; star->len += 2; }
 		star->bfIdx = curIdx;
@@ -75,7 +76,7 @@ int solution(int a[], int a_len) {
 	//2. a[]돌면서 star[]채우기 이 때 각 리스트의 최대 스타수열 길이 len을 저장
 	for(i = 0; i < a_len - 1; i++){
 		updateLen(star+a[i], i);
-		//printf("i, len, flag, bfIdx: %d %d %d %d\n", i, star[a[i]].len, star[a[i]].flag, star[a[i]].bfIdx);
+		printf("i, len, flag, bfIdx: %d %d %d %d\n", i, star[a[i]].len, star[a[i]].flag, star[a[i]].bfIdx);
 	}
 	lastUpdate(star+a[i], i);
 
@@ -87,4 +88,3 @@ int solution(int a[], int a_len) {
 	 
 	return max;
 }
-	
