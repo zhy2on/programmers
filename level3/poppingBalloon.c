@@ -1,5 +1,4 @@
-//ver3 오류:
-//{-16, 27, 65, -2, 58, -92, -71, -68, -61, -33} 정답: 6 output: 0
+//ver4: 오류수정 - 오타수정 + answer이 b[0]일 때와 마지막에 멈출 때를 더해 + 2를 해줘야 함
 #include <stdio.h>
 #include <stdlib.h>
 void swapElements(int* p, int* q);
@@ -27,7 +26,7 @@ int inPlacePartition(int* a, int* b, int l, int r) { //a를 기준으로 b를 �
 
 	while(i <= j) {
 		while(i <= j && a[b[i]] <= p) i++;
-		while(j >= i && a[b[i]] >= p) j--;
+		while(j >= i && a[b[j]] >= p) j--; //////////////
 		if (i < j) swapElements(b+i, b+j);
 	}
 	if(i != r) swapElements(b+i, b+r);
@@ -52,12 +51,14 @@ int solution(int a[], int a_len) {
 	initB(b, a_len); //b에 인덱스값을 저장
 	
 	inPlaceQuickSort(a, b, 0, a_len - 1); //a를 기준으로 b를 내림차순 정렬
-	
+	for(i = 0; i < a_len; i++) printf("%d ",b[i]);
+	printf("\n");
+
 	max = min = b[0];
-	for(i = 0; (max != a_len - 1) && (min != 0); i++) {
+	for(i = 1; (max != a_len - 1) && (min != 0); i++) {
 		if(b[i] < min) { answer++; min = b[i]; }
 		else if(b[i] > max) { answer++; max = b[i]; }
 	}
 
-	return answer;
+	return answer + 2;
 }
