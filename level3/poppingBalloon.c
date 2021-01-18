@@ -1,4 +1,4 @@
-//ver4: 오류수정 - 오타수정 + answer이 b[0]일 때와 마지막에 멈출 때를 더해 + 2를 해줘야 함
+//ver5: 오류수정 - solution 함수 안 for문 변경
 #include <stdio.h>
 #include <stdlib.h>
 void swapElements(int* p, int* q);
@@ -7,8 +7,8 @@ void inPlaceQuickSort(int* a, int* b, int l, int r);
 void initB(int b[], int len);
 int solution(int a[], int a_len);
 int main(){
-	int a[] = {-16, 27, 65, -2, 58, -92, -71, -68, -61, -33};
-	int a_len = 10;
+	int a[] = {9,-1,-5};
+	int a_len = 3;
 	
 	printf("%d\n", solution(a, a_len));
 
@@ -26,12 +26,12 @@ int inPlacePartition(int* a, int* b, int l, int r) { //a를 기준으로 b를 �
 
 	while(i <= j) {
 		while(i <= j && a[b[i]] <= p) i++;
-		while(j >= i && a[b[j]] >= p) j--; //////////////
+		while(j >= i && a[b[j]] >= p) j--; /*헷갈리지 말기!*/
 		if (i < j) swapElements(b+i, b+j);
 	}
 	if(i != r) swapElements(b+i, b+r);
 
-	return i;
+	return i; /*빼먹지 말기!*/
 }
 void inPlaceQuickSort(int* a, int* b, int l, int r) { //a를 기준으로 b를 정렬 해야 함
 	int p, q;
@@ -55,10 +55,14 @@ int solution(int a[], int a_len) {
 	printf("\n");
 
 	max = min = b[0];
-	for(i = 1; (max != a_len - 1) && (min != 0); i++) {
+	printf("max, min: %d %d\n", max, min);
+	for(i = 1; i < a_len - 1; i++) {
+		if((max == a_len - 1) && (min == 0)) break;
+
+		printf("%d ", a[i]);
 		if(b[i] < min) { answer++; min = b[i]; }
 		else if(b[i] > max) { answer++; max = b[i]; }
 	}
-
+	printf("\n");
 	return answer + 2;
 }
