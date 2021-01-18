@@ -2,6 +2,10 @@
 //{-16, 27, 65, -2, 58, -92, -71, -68, -61, -33} 정답: 6 output: 0
 #include <stdio.h>
 #include <stdlib.h>
+void swapElements(int* p, int* q);
+int inPlacePartition(int* a, int* b, int l, int r);
+void inPlaceQuickSort(int* a, int* b, int l, int r);
+void initB(int b[], int len);
 int solution(int a[], int a_len);
 int main(){
 	int a[] = {-16, 27, 65, -2, 58, -92, -71, -68, -61, -33};
