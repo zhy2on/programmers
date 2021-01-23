@@ -21,7 +21,6 @@ int solution(const char* dirs) {
 			tmp->u = tmp->d = tmp->r = tmp->l = 0;
 		}
 	}
-
 	x = y = 0;
 	for(int i = 0; i < strlen(dirs); i++) {
 		c = dirs[i];
