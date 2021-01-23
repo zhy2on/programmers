@@ -1,15 +1,26 @@
+//ver2: 반례 aaaa 답: 4 출력: 3 
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 int count(const char* s, int n) {
-	int l , r, len = 0;
-	for(l = n-1, r = n+1; l >= 0 && r < strlen(s); l--, r++) {
-		if(s[l] == s[r]) len++;
+	int l = n - 1, r = n + 1, len = 1;
+	if(s[l] != s[r]) {
+		if(s[n] == s[r]) { l = n; len = 0; }
+		else if(s[n] == s[l]) { r = n; len = 0; }
+		else return 1;
+	}
+
+	while(l >= 0 && r < strlen(s)) {
+		if(s[l] == s[r]) {
+			len += 2;
+			l--;
+			r++;
+		}
 		else break;
 	}
 
-	return len * 2 + 1;
+	return len;
 }
 int solution(const char* s) {
 	int answer = 0, tmp;
@@ -20,4 +31,10 @@ int solution(const char* s) {
 	}
 
 	return answer;
+}
+int main() {
+	char s[100];
+	scanf("%s", s);
+	printf("%d\n", solution(s));
+	return 0;
 }
