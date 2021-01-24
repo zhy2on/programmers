@@ -1,15 +1,13 @@
-//ver1 일단 오류나서 시도조차 못 함.. 뭐가 문젤까
+//ver2 : 오류- signal: floating point exception (core dumped))
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
 int factorial(int n) {
-	if(n <= 1) return n;
+	if(n <= 1) return 1; //nC0일 경우를 생각!
 	return n * factorial(n - 1);
 }
 int combination(int n, int r) {
-	int tmp = factorial(r) * factorial(n - r);
-	tmp = factorial(n) / tmp;
-	return tmp;
+	return factorial(n) / (factorial(r) * factorial(n - r));
 }
 long long solution(int n) {
 	long long answer = 0;
@@ -24,10 +22,8 @@ long long solution(int n) {
 		n = n / 2 + 1;
 	}
 	
-	printf("%d %d\n", n, r);
 	while(r >= 0) {
-		answer += combination(n, r);
-		n++; r--;
+		answer += combination(n++, r--);
 	}
 	answer = answer % 1234567;
 
