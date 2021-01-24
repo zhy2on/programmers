@@ -1,37 +1,23 @@
-//ver2 : 오류- signal: floating point exception (core dumped))
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-int factorial(int n) {
-	if(n <= 1) return 1; //nC0일 경우를 생각!
-	return n * factorial(n - 1);
-}
-int combination(int n, int r) {
-	return factorial(n) / (factorial(r) * factorial(n - r));
-}
-long long solution(int n) {
-	long long answer = 0;
-	int r;
-	
-	if(n % 2 == 0) {
-		r = n / 2;
-		n = n / 2;
-	}
-	else {
-		r = n / 2;
-		n = n / 2 + 1;
-	}
-	
-	while(r >= 0) {
-		answer += combination(n++, r--);
-	}
-	answer = answer % 1234567;
+int solution(int n) {
+	int ans[2] = {1, 2}, tmp, i;
 
-	return answer;
+	if(n == 1) return 1;
+	else if(n == 2) return 2;
+
+	for(i = 3; i <= n; i++) {
+		tmp = (ans[0] + ans[1]) % 1234567;
+		ans[0] = ans[1];
+		ans[1] = tmp;
+	}
+
+	return tmp;
 }
 int main() {
 	int n;
 	scanf("%d", &n);
-	printf("%lld\n", solution(n));
+	printf("ans: %d\n", solution(n));
 	return 0;
 }
